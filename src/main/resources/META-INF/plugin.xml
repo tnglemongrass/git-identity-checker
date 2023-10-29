@@ -1,0 +1,44 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.yourplugin.NoCommitsAfterSix</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>NoCommitsAfterSix</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="support@yourplugin.com" url="https://www.yourplugin.com">YourPlugin</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    Prevents making commits after six in the evening.<br>
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+<!--        <vcs.commitOptionsProvider implementation="com.yourplugin.NoCommitsAfterSixOption"/>-->
+
+<!--        <vcs.commitMessageProvider implementation="com.yourplugin.commitMessageProvider"/>-->
+<!--        <vcs.changes.localCommitExecutor implementation="com.yourplugin.localCommitExecutor"/>-->
+<!--        <checkinHandlerFactory implementation="com.yourplugin.checkInHandlerFactory"/>-->
+<!--        <vcsCheckinHandlerFactory implementation="com.yourplugin.vcsCheckInHandlerFactory"/>-->
+
+        <checkinHandlerFactory implementation="com.yourplugin.TimeCheckinHandlerFactory"/>
+
+    </extensions>
+
+    <application-components>
+        <component>
+            <implementation-class>com.yourplugin.NoCommitsAfterSixComponent</implementation-class>
+        </component>
+    </application-components>
+
+</idea-plugin>
