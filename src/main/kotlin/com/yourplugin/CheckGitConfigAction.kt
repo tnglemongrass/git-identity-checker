@@ -6,6 +6,6 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 class CheckGitConfigAction : AnAction() {
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project ?: return
-        Helpers.hasLocalGitUserAndName(project)
+        Helpers.hasLocalGitUserAndMailWithMessageBox(project)
     }
 }

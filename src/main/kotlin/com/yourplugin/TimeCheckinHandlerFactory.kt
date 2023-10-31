@@ -1,15 +1,13 @@
 package com.yourplugin
 
+import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vcs.CheckinProjectPanel
 import com.intellij.openapi.vcs.changes.CommitContext
 import com.intellij.openapi.vcs.checkin.CheckinHandler
 import com.intellij.openapi.vcs.checkin.CheckinHandlerFactory
-import com.intellij.openapi.diagnostic.Logger
 import org.jetbrains.annotations.NotNull
 import java.time.LocalTime
-import java.io.FileWriter
-import java.io.IOException
 
 class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
     companion object {
@@ -34,14 +32,12 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
         LOG.info("asdf - CreateHandler called!")
         return object : CheckinHandler() {
             override fun beforeCheckin(): ReturnResult {
-                // temporarily try to prevent any commits via intellij
-                // Messages.showErrorDialog("Asdf2 - Commits after 18:00 are not allowed.", "Commit Error")
-                // return ReturnResult.CANCEL
 
-                val doAfterSixCheck = true;
-                val doGitIdentityCheck = true;
+                val doAfterSixCheck = false
+                val doGitIdentityCheck = true
 
                 if (doAfterSixCheck) {
+                    // check if commit is attempted after 18:00
                     val now = LocalTime.now()
                     if (now.isAfter(LocalTime.of(18, 0))) {
                         LOG.info("NoCommitsAfterSix - Commit attempt after 18:00 - condition failed")
@@ -54,14 +50,11 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
                 }
 
                 if (doGitIdentityCheck) {
-                    val hasLocalUserAndMail = false;
-
-                    // TODO: check if a local git config files exist, its path is ${repo root}/.git/config
-
-                    if (hasLocalUserAndMail) {
-
-                        LOG.info("NoCommitsAfterSix - No repo-specific git user.name and user.mail found. Proceed anyways?");
-                        val dialogResult = Messages.showYesNoDialog("No repo-specific git user.name and user.mail found. Proceed anyways?", "NoCommitAfterSix: Check Local Git Config", Messages.getWarningIcon())
+                    // check if a local git config files exist, its path is ${repo root}/.git/config
+                    val hasLocalUserAndMail: Boolean = Helpers.hasLocalGitUserAndMail(checkinProjectPanel.project)
+                    if (!hasLocalUserAndMail) {
+                        LOG.info("NoCommitsAfterSix - No repo-specific git user.name and user.mail found.")
+                        val dialogResult = Messages.showYesNoDialog("No repo-specific git user.name and user.mail found. Are you REALLY sure to continue?", "NoCommitAfterSix: Check Local Git Config", Messages.getWarningIcon())
                         if (dialogResult == Messages.YES) {
                             return ReturnResult.COMMIT
                         } else {
@@ -70,7 +63,7 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
                     }
                 }
 
-                return ReturnResult.COMMIT;
+                return ReturnResult.COMMIT
 
             }
         }

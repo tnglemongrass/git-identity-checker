@@ -6,7 +6,25 @@ import java.io.File
 
 class Helpers {
     companion object {
-        fun hasLocalGitUserAndName(project: Project): Boolean {
+        fun hasLocalGitUserAndMailWithMessageBox(project: Project): Boolean {
+            val (name: String?, email: String?) = retrieveLocalGitUserAndMail(project)
+            val conditionFulfilled = name != null && email != null
+
+            if (conditionFulfilled) {
+                Messages.showMessageDialog(project, "Local git user.name and user.email found with values:\nuser.name = $name\nuser.mail = $email", "Local Git Config Checker", Messages.getInformationIcon())
+                return true
+            } else {
+                Messages.showMessageDialog(project, "Git user.name and/or user.email not found in .git/config.", "Local Git Config Checker", Messages.getWarningIcon())
+                return false
+            }
+        }
+
+        fun hasLocalGitUserAndMail(project: Project): Boolean {
+            val (name: String?, email: String?) = retrieveLocalGitUserAndMail(project)
+            return name != null && email != null
+        }
+
+        private fun retrieveLocalGitUserAndMail(project: Project): Pair<String?, String?> {
             val gitConfigFile = File(project.basePath, ".git/config")
             val configLines = gitConfigFile.readLines()
 
@@ -22,14 +40,7 @@ class Helpers {
                     line.trim().startsWith("[") && line.trim() != "[user]" -> currentUserSection = false
                 }
             }
-
-            if (name == null || email == null) {
-                Messages.showMessageDialog(project, "Git user.name and/or user.email not found in .git/config.", "Local Git Config Checker", Messages.getWarningIcon())
-                return false
-            } else {
-                Messages.showMessageDialog(project, "Git user.name and user.email found with values:\nuser.name = $name\nuser.mail = $email", "Local Git Config Checker", Messages.getInformationIcon())
-                return true
-            }
+            return Pair(name, email)
         }
     }
 }
