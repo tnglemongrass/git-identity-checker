@@ -24,21 +24,8 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-<!--        <vcs.commitOptionsProvider implementation="com.yourplugin.NoCommitsAfterSixOption"/>-->
-
-        <vcs.commitMessageProvider implementation="com.yourplugin.commitMessageProvider"/>
-<!--        <vcs.changes.localCommitExecutor implementation="com.yourplugin.localCommitExecutor"/>-->
-<!--        <checkinHandlerFactory implementation="com.yourplugin.checkInHandlerFactory"/>-->
-<!--        <vcsCheckinHandlerFactory implementation="com.yourplugin.vcsCheckInHandlerFactory"/>-->
-
         <checkinHandlerFactory implementation="com.yourplugin.TimeCheckinHandlerFactory"/>
 
     </extensions>
-
-    <application-components>
-        <component>
-            <implementation-class>com.yourplugin.NoCommitsAfterSixComponent</implementation-class>
-        </component>
-    </application-components>
 
 </idea-plugin>
