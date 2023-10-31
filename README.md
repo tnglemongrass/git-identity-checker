@@ -17,7 +17,7 @@ Motivation is to prevent commits under the wrong mail address when working on mu
 - written in Kotlin, Gradle, ...
 
 ### Where is the code?
-  - All the logic is in `src/main/kotlin/com/yourplugin/TimeCheckinHandlerFactory.kt`
+  - All the logic is in `src/main/kotlin/com/github/TimeCheckinHandlerFactory.kt`
   - The plugin components are registered in `src/main/resources/META-INF/plugin.xml`
 
 ### Debugging
