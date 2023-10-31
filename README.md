@@ -12,8 +12,8 @@ fulfilled.
 ## Development
 
 Where is the code?
-  - all the logic is in `src/main/kotlin/com/yourplugin/TimeCheckinHandlerFactory.kt`
-  - All plugin components are registered in `src/main/resources/META-INF/plugin.xml` unter 
+  - All the logic is in `src/main/kotlin/com/yourplugin/TimeCheckinHandlerFactory.kt`
+  - The plugin components are registered in `src/main/resources/META-INF/plugin.xml`
 
 ## Debugging
 

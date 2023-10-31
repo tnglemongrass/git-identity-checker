@@ -26,7 +26,7 @@
     <extensions defaultExtensionNs="com.intellij">
 <!--        <vcs.commitOptionsProvider implementation="com.yourplugin.NoCommitsAfterSixOption"/>-->
 
-<!--        <vcs.commitMessageProvider implementation="com.yourplugin.commitMessageProvider"/>-->
+        <vcs.commitMessageProvider implementation="com.yourplugin.commitMessageProvider"/>
 <!--        <vcs.changes.localCommitExecutor implementation="com.yourplugin.localCommitExecutor"/>-->
 <!--        <checkinHandlerFactory implementation="com.yourplugin.checkInHandlerFactory"/>-->
 <!--        <vcsCheckinHandlerFactory implementation="com.yourplugin.vcsCheckInHandlerFactory"/>-->
