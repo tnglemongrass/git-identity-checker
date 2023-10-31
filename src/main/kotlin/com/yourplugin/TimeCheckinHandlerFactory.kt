@@ -27,13 +27,18 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
 
                 val now = LocalTime.now()
                 return if (now.isAfter(LocalTime.of(18, 0))) {
-                    LOG.info("asdf1 - Commit attempt after 18:00 - condition failed")
+                    LOG.info("NoCommitsAfterSix - Commit attempt after 18:00 - condition failed")
+                    Messages.showErrorDialog("Commits after 18:00 are not allowed.", "NoCommitsAfterSix")
 
-                    // TODO: maybe there is some possibility to show a yes/no/cancel box?
-                    Messages.showErrorDialog("Asdf1 - Commits after 18:00 are not allowed.", "Commit Error")
-                    return ReturnResult.CANCEL
+                    LOG.info("NoCommitsAfterSix - No repo-specific git user.name and user.mail found. Proceed anyways?");
+                    val dialogResult = Messages.showYesNoDialog("No repo-specific git user.name and user.mail found. Proceed anyways?", "Check Local Git Config", Messages.getWarningIcon())
+                    if (dialogResult == Messages.YES) {
+                        return ReturnResult.COMMIT
+                    } else {
+                        return ReturnResult.CANCEL
+                    }
                 } else {
-                    LOG.info("asdf - Commit attempt before 18:00 - condition fulfilled")
+                    LOG.info("NoCommitsAfterSix - Commit attempt before 18:00 - condition fulfilled")
                     ReturnResult.COMMIT
                 }
             }
