@@ -38,22 +38,33 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
                 // Messages.showErrorDialog("Asdf2 - Commits after 18:00 are not allowed.", "Commit Error")
                 // return ReturnResult.CANCEL
 
-                val now = LocalTime.now()
-                return if (now.isAfter(LocalTime.of(18, 0))) {
-                    LOG.info("NoCommitsAfterSix - Commit attempt after 18:00 - condition failed")
-                    Messages.showErrorDialog("Commits after 18:00 are not allowed.", "NoCommitsAfterSix")
+                val doAfterSixCheck = true;
+                val doGitIdentityCheck = true;
 
+                if (doAfterSixCheck) {
+                    val now = LocalTime.now()
+                    return if (now.isAfter(LocalTime.of(18, 0))) {
+                        LOG.info("NoCommitsAfterSix - Commit attempt after 18:00 - condition failed")
+                        Messages.showErrorDialog("Commits after 18:00 are not allowed.", "NoCommitsAfterSix")
+                        return ReturnResult.CANCEL
+                    } else {
+                        LOG.info("NoCommitsAfterSix - Commit attempt before 18:00 - condition fulfilled")
+                        ReturnResult.COMMIT
+                    }
+                }
+
+                if (doGitIdentityCheck) {
                     LOG.info("NoCommitsAfterSix - No repo-specific git user.name and user.mail found. Proceed anyways?");
-                    val dialogResult = Messages.showYesNoDialog("No repo-specific git user.name and user.mail found. Proceed anyways?", "Check Local Git Config", Messages.getWarningIcon())
+                    val dialogResult = Messages.showYesNoDialog("No repo-specific git user.name and user.mail found. Proceed anyways?", "NoCommitAfterSix: Check Local Git Config", Messages.getWarningIcon())
                     if (dialogResult == Messages.YES) {
                         return ReturnResult.COMMIT
                     } else {
                         return ReturnResult.CANCEL
                     }
-                } else {
-                    LOG.info("NoCommitsAfterSix - Commit attempt before 18:00 - condition fulfilled")
-                    ReturnResult.COMMIT
                 }
+
+                return ReturnResult.COMMIT;
+
             }
         }
     }
