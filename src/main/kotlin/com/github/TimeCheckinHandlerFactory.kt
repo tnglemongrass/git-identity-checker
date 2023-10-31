@@ -32,6 +32,7 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
         LOG.info("asdf - CreateHandler called!")
         return object : CheckinHandler() {
             override fun beforeCheckin(): ReturnResult {
+                val isGitRepo = Helpers.isGitProject(checkinProjectPanel.project)
 
                 val doAfterSixCheck = false
                 val doGitIdentityCheck = true
@@ -49,7 +50,7 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
                     }
                 }
 
-                if (doGitIdentityCheck) {
+                if (doGitIdentityCheck && isGitRepo) {
                     // check if a local git config files exist, its path is ${repo root}/.git/config
                     val hasLocalUserAndMail: Boolean = Helpers.hasLocalGitUserAndMail(checkinProjectPanel.project)
                     if (!hasLocalUserAndMail) {

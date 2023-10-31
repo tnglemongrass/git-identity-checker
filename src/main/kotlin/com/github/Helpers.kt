@@ -24,6 +24,10 @@ class Helpers {
             return name != null && email != null
         }
 
+        fun isGitProject(project: Project): Boolean {
+            return File(project.basePath, ".git/config").isFile
+        }
+
         private fun retrieveLocalGitUserAndMail(project: Project): Pair<String?, String?> {
             val gitConfigFile = File(project.basePath, ".git/config")
             val configLines = gitConfigFile.readLines()
