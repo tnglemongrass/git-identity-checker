@@ -43,23 +43,30 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
 
                 if (doAfterSixCheck) {
                     val now = LocalTime.now()
-                    return if (now.isAfter(LocalTime.of(18, 0))) {
+                    if (now.isAfter(LocalTime.of(18, 0))) {
                         LOG.info("NoCommitsAfterSix - Commit attempt after 18:00 - condition failed")
                         Messages.showErrorDialog("Commits after 18:00 are not allowed.", "NoCommitsAfterSix")
                         return ReturnResult.CANCEL
                     } else {
                         LOG.info("NoCommitsAfterSix - Commit attempt before 18:00 - condition fulfilled")
-                        ReturnResult.COMMIT
+                        return ReturnResult.COMMIT
                     }
                 }
 
                 if (doGitIdentityCheck) {
-                    LOG.info("NoCommitsAfterSix - No repo-specific git user.name and user.mail found. Proceed anyways?");
-                    val dialogResult = Messages.showYesNoDialog("No repo-specific git user.name and user.mail found. Proceed anyways?", "NoCommitAfterSix: Check Local Git Config", Messages.getWarningIcon())
-                    if (dialogResult == Messages.YES) {
-                        return ReturnResult.COMMIT
-                    } else {
-                        return ReturnResult.CANCEL
+                    val hasLocalUserAndMail = false;
+
+                    // TODO: check if a local git config files exist, its path is ${repo root}/.git/config
+
+                    if (hasLocalUserAndMail) {
+
+                        LOG.info("NoCommitsAfterSix - No repo-specific git user.name and user.mail found. Proceed anyways?");
+                        val dialogResult = Messages.showYesNoDialog("No repo-specific git user.name and user.mail found. Proceed anyways?", "NoCommitAfterSix: Check Local Git Config", Messages.getWarningIcon())
+                        if (dialogResult == Messages.YES) {
+                            return ReturnResult.COMMIT
+                        } else {
+                            return ReturnResult.CANCEL
+                        }
                     }
                 }
 

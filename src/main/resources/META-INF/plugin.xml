@@ -25,7 +25,13 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <checkinHandlerFactory implementation="com.yourplugin.TimeCheckinHandlerFactory"/>
-
     </extensions>
+
+    <actions>
+        <action id="CheckGitConfigAction" class="com.yourplugin.CheckGitConfigAction" text="Check Local Git Config..." description="Check if Git user.name and user.email are set">
+            <add-to-group group-id="ToolsMenu" anchor="first" />
+        </action>
+    </actions>
+
 
 </idea-plugin>
