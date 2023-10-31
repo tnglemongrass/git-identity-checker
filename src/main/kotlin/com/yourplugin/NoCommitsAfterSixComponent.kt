@@ -10,7 +10,7 @@ class NoCommitsAfterSixComponent : ApplicationComponent {
 
     @Deprecated("Deprecated in Java")
     override fun initComponent() {
-        LOG.info("NoCommitsAfterSix plugin has been loaded successfully")
+        LOG.info("asdf - NoCommitsAfterSix plugin has been loaded successfully")
     }
 
     @Deprecated("Deprecated in Java")
