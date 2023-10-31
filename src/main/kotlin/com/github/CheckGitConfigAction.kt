@@ -1,4 +1,4 @@
-package com.yourplugin
+package com.github
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent

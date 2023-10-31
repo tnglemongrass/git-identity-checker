@@ -1,4 +1,4 @@
-package com.yourplugin
+package com.github
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.Messages

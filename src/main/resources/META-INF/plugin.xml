@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>com.yourplugin.NoCommitsAfterSix</id>
+    <id>com.github.NoCommitsAfterSix</id>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
@@ -24,11 +24,11 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <checkinHandlerFactory implementation="com.yourplugin.TimeCheckinHandlerFactory"/>
+        <checkinHandlerFactory implementation="com.github.TimeCheckinHandlerFactory"/>
     </extensions>
 
     <actions>
-        <action id="CheckGitConfigAction" class="com.yourplugin.CheckGitConfigAction" text="Check Local Git Config..." description="Check if Git user.name and user.email are set">
+        <action id="CheckGitConfigAction" class="com.github.CheckGitConfigAction" text="Check Local Git Config..." description="Check if Git user.name and user.email are set">
             <add-to-group group-id="ToolsMenu" anchor="first" />
         </action>
     </actions>
