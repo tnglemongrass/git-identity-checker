@@ -26,3 +26,8 @@ Motivation is to prevent commits under the wrong mail address when working on mu
   open and stop on breakpoints.
 - There is also a log available, menu 'Help', 'Show log in files' (old UI also allows to open log in IDE), look for
   lines containing "NoCommitsAfterSix".
+
+## Installation
+- Invoke the `buildPlugin` Gradle task to create the plugin distribution
+- The resulting ZIP file is located in `build/distributions` and can be installed via "Install Plugin from Disk..." 
+- read more: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html#building-distribution

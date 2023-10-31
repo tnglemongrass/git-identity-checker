@@ -16,7 +16,7 @@
     <description><![CDATA[
     Prevents making commits without local git.user and git.mail.<br><br>
     A yes/no message box appears when trying to commit and these are not set.<br>
-    No configuration needed, just works (as long as the plugin is enabled).<br>
+    No configuration needed, no git hooks needed, just works (as long as the plugin is enabled).<br>
   ]]></description>
     <!--    Prevents making commits after six in the evening.-->
 
