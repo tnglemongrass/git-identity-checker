@@ -16,6 +16,19 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
         private val LOG: Logger = Logger.getInstance(TimeCheckinHandlerFactory::class.java)
     }
 
+// alternatives candidates for plugin name:
+//    GitGuard
+//    CommitCheckr
+//    RepoAuth
+//    SecureCommit
+//    RepoVerify
+//    GitConfigCheck
+//    CommitAuthenticator
+//    ConfigGuard
+//    RepoCommitCheck
+//    GitIdentityCheck
+
+
     @NotNull
     override fun createHandler(@NotNull checkinProjectPanel: CheckinProjectPanel, @NotNull commitContext: CommitContext): CheckinHandler {
         LOG.info("asdf - CreateHandler called!")
