@@ -5,7 +5,7 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>GitIdentityChecker</name>
+    <name>Git Identity Checker</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="support@yourplugin.com" url="https://www.yourplugin.com">YourPlugin</vendor>
@@ -28,13 +28,19 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <checkinHandlerFactory implementation="com.github.CheckinHandlerFactory"/>
+        <notificationGroup id="GitIdentityChecker" displayType="STICKY_BALLOON"/>
     </extensions>
 
     <actions>
-        <action id="CheckGitConfigAction" class="com.github.CheckGitConfigAction" text="Check Local Git Identity..." description="Check if local Git user.name and user.email are set">
-            <add-to-group group-id="ToolsMenu" anchor="first" />
+        <action id="CheckGitConfigAction" class="com.github.CheckGitConfigAction" text="Check Local Git Identity..."
+                description="Check if local Git user.name and user.email are set">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>
     </actions>
 
+    <applicationListeners>
+        <listener class="com.github.ProjectOpenedListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+    </applicationListeners>
 
 </idea-plugin>
