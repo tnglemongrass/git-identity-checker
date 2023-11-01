@@ -1,6 +1,6 @@
 # <img src="src/main/resources/META-INF/pluginIcon.svg" height="45px"/> Git Identity Checker
 
-This is an IntelliJ plugin to prevent making commits without local `user.name` and `user.mail`.
+This is an IntelliJ plugin to prevent making commits without local `user.name` and `user.email`.
 
 In runs as part of the standard 'commit' button action and shows an error message if this condition is not found.
 
