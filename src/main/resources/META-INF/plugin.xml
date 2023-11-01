@@ -23,7 +23,10 @@
     <change-notes><![CDATA[
         <ul>
             <li>
-                0.1-SNAPSHOT: initial release with warning message on commit, action in the tools menu and notification on startup
+                0.2: first public release
+            </li>
+            <li>
+                0.1: initial release with warning message on commit, action in the tools menu and notification on startup
             </li>
         </ul>
   ]]></change-notes>

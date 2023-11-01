@@ -31,3 +31,10 @@ Motivation is to prevent commits under the wrong mail address when working on mu
 - Invoke the `buildPlugin` Gradle task to create the plugin distribution
 - The resulting ZIP file is located in `build/distributions` and can be installed via "Install Plugin from Disk..." 
 - read more: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html#building-distribution
+
+## Release Process
+- increase version in `build.gradle.kts`
+- build a zip, appears in [build/distributions](build/distributions)
+- upload manually via https://plugins.jetbrains.com/plugin/add#intellij
+
+
