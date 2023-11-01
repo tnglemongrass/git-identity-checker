@@ -25,8 +25,8 @@ class CheckinHandlerFactory : CheckinHandlerFactory() {
                     // check if a local git config files exist, its path is ${repo root}/.git/config
                     val hasLocalUserAndMail: Boolean = Helpers.hasLocalGitUserAndMail(checkinProjectPanel.project)
                     if (!hasLocalUserAndMail) {
-                        LOG.info("GitIdentityChecker - No repo-specific git user.name and user.mail found.")
-                        val dialogResult = Messages.showYesNoDialog("No repo-specific git user.name and user.mail found. Are you REALLY sure to continue?", "Local Git Identity Checker", Messages.getErrorIcon())
+                        LOG.info("GitIdentityChecker - No repo-specific git user.name and user.email found.")
+                        val dialogResult = Messages.showYesNoDialog("No repo-specific git user.name and user.email found. Are you REALLY sure to continue?", "Local Git Identity Checker", Messages.getErrorIcon())
                         return if (dialogResult == Messages.YES) {
                             ReturnResult.COMMIT
                         } else {

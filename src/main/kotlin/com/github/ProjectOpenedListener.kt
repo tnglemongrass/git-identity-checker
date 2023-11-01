@@ -11,7 +11,7 @@ class ProjectOpenedListener : ProjectManagerListener {
         val isGitRepo = Helpers.isGitProject(project)
         if (isGitRepo) {
             if (!Helpers.hasLocalGitUserAndMail(project)) {
-                val content = "No repo-specific git user.name and user.mail found."
+                val content = "No repo-specific git user.name and user.email found."
                 val notification = Notification("GitIdentityChecker", "Local git identity checker", content, NotificationType.WARNING)
                 Notifications.Bus.notify(notification, project)
             }

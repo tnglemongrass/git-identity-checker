@@ -21,7 +21,7 @@ class CheckGitConfigAction : AnAction() {
         }
 
         if (conditionFulfilled) {
-            Messages.showMessageDialog(project, "Repo-specific git user.name and user.email found with values:\nuser.name = $name\nuser.mail = $email", "Local Git Identity Checker", Messages.getInformationIcon())
+            Messages.showMessageDialog(project, "Repo-specific git user.name and user.email found with values:\nuser.name = $name\nuser.email = $email", "Local Git Identity Checker", Messages.getInformationIcon())
             return true
         } else {
             Messages.showMessageDialog(project, "No repo-specific git user.name and/or user.email found in .git/config.", "Local Git Identity Checker", Messages.getWarningIcon())
