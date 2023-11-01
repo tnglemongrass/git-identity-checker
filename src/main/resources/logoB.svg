@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <style bx:fonts="Lato">@import url(https://fonts.googleapis.com/css2?family=Lato%3Aital%2Cwght%400%2C100%3B0%2C300%3B0%2C400%3B0%2C700%3B0%2C900%3B1%2C100%3B1%2C300%3B1%2C400%3B1%2C700%3B1%2C900&amp;display=swap);</style>
+  </defs>
+  <g transform="matrix(0.632420003414154, 0, 0, 0.632420003414154, 336.7535095214844, -91.8930892944336)" style="">
+    <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="127.089" cy="486.289" rx="132.497" ry="131.76"/>
+    <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="129.302" cy="254.234" rx="66.863" ry="66.863"/>
+  </g>
+  <g transform="matrix(0.8184930086135864, 0, 0, 0.8184930086135864, 182.15554809570312, -108.32168579101562)" style="">
+    <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="127.089" cy="486.289" rx="132.497" ry="131.76"/>
+    <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="129.302" cy="254.234" rx="66.863" ry="66.863"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 2.212877988815194, -116.51963806152344)">
+    <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="127.089" cy="486.289" rx="132.497" ry="131.76"/>
+    <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="129.302" cy="254.234" rx="66.863" ry="66.863"/>
+  </g>
+  <text style="fill: rgb(68, 68, 68); font-family: Lato; font-size: 226.9px; white-space: pre;" x="244.109" y="374.662">?</text>
+</svg>
