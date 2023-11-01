@@ -1,9 +1,8 @@
 # GitIdentityChecker
 
-This is an intellij plugin that checks that `user.name` and `user.mail` are defined as part of the repo's git config.
-It also has an option to prevents any git commits after 18:00.
-In runs as part of the standard 'commit' button action and shows an error message if the two conditions are not
-fulfilled.
+This is an intellij plugin to prevent commits without local `user.name` and `user.mail`.
+
+In runs as part of the standard 'commit' button action and shows an error message if this condition is not found.
 
 Motivation is to prevent commits under the wrong mail address when working on multiple repositories (work, github, private bitbucket,...).
 
@@ -12,7 +11,7 @@ Motivation is to prevent commits under the wrong mail address when working on mu
 - Automatic check before each commit, shows yes/no dialog if no local name/mail are found.
 
 ## Development
-### ## Requirements
+### Requirements
 - IntellijIDEA 2023.2.4 or later
 - written in Kotlin, Gradle, ...
 
