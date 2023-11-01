@@ -9,9 +9,9 @@ import com.intellij.openapi.vcs.checkin.CheckinHandlerFactory
 import org.jetbrains.annotations.NotNull
 import java.time.LocalTime
 
-class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
+class CheckinHandlerFactory : CheckinHandlerFactory() {
     companion object {
-        private val LOG: Logger = Logger.getInstance(TimeCheckinHandlerFactory::class.java)
+        private val LOG: Logger = Logger.getInstance(CheckinHandlerFactory::class.java)
     }
 
 // alternatives candidates for plugin name:

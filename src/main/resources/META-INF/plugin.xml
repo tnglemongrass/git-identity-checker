@@ -27,7 +27,7 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <checkinHandlerFactory implementation="com.github.TimeCheckinHandlerFactory"/>
+        <checkinHandlerFactory implementation="com.github.CheckinHandlerFactory"/>
     </extensions>
 
     <actions>
