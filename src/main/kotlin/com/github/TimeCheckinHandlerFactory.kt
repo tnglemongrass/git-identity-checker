@@ -39,13 +39,13 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
                 if (doAfterSixCheck) {
                     // check if commit is attempted after 18:00
                     val now = LocalTime.now()
-                    if (now.isAfter(LocalTime.of(18, 0))) {
+                    return if (now.isAfter(LocalTime.of(18, 0))) {
                         LOG.info("GitIdentityChecker - Commit attempt after 18:00 - condition failed")
                         Messages.showErrorDialog("Commits after 18:00 are not allowed.", "No Commits After Six")
-                        return ReturnResult.CANCEL
+                        ReturnResult.CANCEL
                     } else {
                         LOG.info("GitIdentityChecker - Commit attempt before 18:00 - condition fulfilled")
-                        return ReturnResult.COMMIT
+                        ReturnResult.COMMIT
                     }
                 }
 
@@ -55,10 +55,10 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
                     if (!hasLocalUserAndMail) {
                         LOG.info("GitIdentityChecker - No repo-specific git user.name and user.mail found.")
                         val dialogResult = Messages.showYesNoDialog("No repo-specific git user.name and user.mail found. Are you REALLY sure to continue?", "Local Git Identity Checker", Messages.getErrorIcon())
-                        if (dialogResult == Messages.YES) {
-                            return ReturnResult.COMMIT
+                        return if (dialogResult == Messages.YES) {
+                            ReturnResult.COMMIT
                         } else {
-                            return ReturnResult.CANCEL
+                            ReturnResult.CANCEL
                         }
                     }
                 }
