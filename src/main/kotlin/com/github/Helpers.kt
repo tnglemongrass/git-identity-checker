@@ -10,11 +10,16 @@ class Helpers {
             val (name: String?, email: String?) = retrieveLocalGitUserAndMail(project)
             val conditionFulfilled = name != null && email != null
 
+            if (!isGitProject(project)) {
+                Messages.showMessageDialog(project, "No .git/config found.", "Local Git Identity Checker", Messages.getErrorIcon())
+                return false
+            }
+
             if (conditionFulfilled) {
-                Messages.showMessageDialog(project, "Local git user.name and user.email found with values:\nuser.name = $name\nuser.mail = $email", "Local Git Config Checker", Messages.getInformationIcon())
+                Messages.showMessageDialog(project, "Repo-specific git user.name and user.email found with values:\nuser.name = $name\nuser.mail = $email", "Local Git Identity Checker", Messages.getInformationIcon())
                 return true
             } else {
-                Messages.showMessageDialog(project, "Git user.name and/or user.email not found in .git/config.", "Local Git Config Checker", Messages.getWarningIcon())
+                Messages.showMessageDialog(project, "No repo-specific git user.name and/or user.email found in .git/config.", "Local Git Identity Checker", Messages.getWarningIcon())
                 return false
             }
         }
