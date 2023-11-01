@@ -16,7 +16,7 @@ Motivation is to prevent commits under the wrong mail address when working on mu
 
 ## Installation
 ### Via Marketplace
-This plugin is available via the JetBrains Marketplace as [Git Identity Checker](https://plugins.jetbrains.com/plugin/23050-git-identity-checker).
+ This plugin is available via JetBrains Marketplace as [Git Identity Checker](https://plugins.jetbrains.com/plugin/23050-git-identity-checker).
 
 ### Via Repository
 - Invoke the `buildPlugin` Gradle task to create the plugin distribution
