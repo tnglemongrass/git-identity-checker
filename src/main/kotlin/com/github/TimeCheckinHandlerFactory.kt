@@ -40,11 +40,11 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
                     // check if commit is attempted after 18:00
                     val now = LocalTime.now()
                     if (now.isAfter(LocalTime.of(18, 0))) {
-                        LOG.info("NoCommitsAfterSix - Commit attempt after 18:00 - condition failed")
+                        LOG.info("GitIdentityChecker - Commit attempt after 18:00 - condition failed")
                         Messages.showErrorDialog("Commits after 18:00 are not allowed.", "No Commits After Six")
                         return ReturnResult.CANCEL
                     } else {
-                        LOG.info("NoCommitsAfterSix - Commit attempt before 18:00 - condition fulfilled")
+                        LOG.info("GitIdentityChecker - Commit attempt before 18:00 - condition fulfilled")
                         return ReturnResult.COMMIT
                     }
                 }
@@ -53,7 +53,7 @@ class TimeCheckinHandlerFactory : CheckinHandlerFactory() {
                     // check if a local git config files exist, its path is ${repo root}/.git/config
                     val hasLocalUserAndMail: Boolean = Helpers.hasLocalGitUserAndMail(checkinProjectPanel.project)
                     if (!hasLocalUserAndMail) {
-                        LOG.info("NoCommitsAfterSix - No repo-specific git user.name and user.mail found.")
+                        LOG.info("GitIdentityChecker - No repo-specific git user.name and user.mail found.")
                         val dialogResult = Messages.showYesNoDialog("No repo-specific git user.name and user.mail found. Are you REALLY sure to continue?", "Local Git Identity Checker", Messages.getErrorIcon())
                         if (dialogResult == Messages.YES) {
                             return ReturnResult.COMMIT

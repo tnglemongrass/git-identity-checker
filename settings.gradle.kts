@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "NoCommitsAfterSix"
+rootProject.name = "GitIdentityChecker"

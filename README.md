@@ -1,4 +1,4 @@
-# NoCommitsAfterSix
+# GitIdentityChecker
 
 This is an intellij plugin that checks that `user.name` and `user.mail` are defined as part of the repo's git config.
 It also has an option to prevents any git commits after 18:00.
@@ -25,7 +25,7 @@ Motivation is to prevent commits under the wrong mail address when working on mu
 - Open the project in Intellij, set breakpoints and click the debug icon. A new IntelliJ Community Edition window will
   open and stop on breakpoints.
 - There is also a log available, menu 'Help', 'Show log in files' (old UI also allows to open log in IDE), look for
-  lines containing "NoCommitsAfterSix".
+  lines containing "GitIdentityChecker".
 
 ## Installation
 - Invoke the `buildPlugin` Gradle task to create the plugin distribution
