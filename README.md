@@ -29,7 +29,7 @@ This plugin is available via the JetBrains Marketplace as [Git Identity Checker]
 - Written in Kotlin, Gradle, ...
 
 ### Where is the code?
-- All the logic is in `src/main/kotlin/com/github/TimeCheckinHandlerFactory.kt`
+- All the commit check logic is in `src/main/kotlin/com/github/CheckinHandlerFactory.kt`
 - The plugin components are registered in `src/main/resources/META-INF/plugin.xml`
 
 ### Debugging
