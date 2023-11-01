@@ -21,16 +21,16 @@ This plugin is available via the JetBrains Marketplace as [Git Identity Checker]
 ### Via Repository
 - Invoke the `buildPlugin` Gradle task to create the plugin distribution
 - The resulting ZIP file is located in `build/distributions` and can be installed via "Install Plugin from Disk..." 
-- read more: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html#building-distribution
+- Read more: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html#building-distribution
 
 ## Development
 ### Requirements
 - IntellijIDEA 2023.2.4 or later
-- written in Kotlin, Gradle, ...
+- Written in Kotlin, Gradle, ...
 
 ### Where is the code?
-  - All the logic is in `src/main/kotlin/com/github/TimeCheckinHandlerFactory.kt`
-  - The plugin components are registered in `src/main/resources/META-INF/plugin.xml`
+- All the logic is in `src/main/kotlin/com/github/TimeCheckinHandlerFactory.kt`
+- The plugin components are registered in `src/main/resources/META-INF/plugin.xml`
 
 ### Debugging
 
@@ -40,7 +40,7 @@ This plugin is available via the JetBrains Marketplace as [Git Identity Checker]
   lines containing "GitIdentityChecker".
 
 ## Release Process
-- increase version in `build.gradle.kts`
-- build a zip, appears in [build/distributions](build/distributions)
-- upload manually via https://plugins.jetbrains.com/plugin/add#intellij
-- create a commit + version tag and push to github
+- Increase version in `build.gradle.kts`
+- Build a zip, appears in [build/distributions](build/distributions)
+- Upload manually via https://plugins.jetbrains.com/plugin/add#intellij
+- Create a commit + version tag and push to GitHub
