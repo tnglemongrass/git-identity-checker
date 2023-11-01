@@ -8,7 +8,7 @@
     <name>Git Identity Checker</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="support@yourplugin.com" url="https://www.yourplugin.com">YourPlugin</vendor>
+    <vendor email="support@yourplugin.com" url="https://www.yourplugin.com">Lukas Baron</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
@@ -19,6 +19,14 @@
     No configuration needed, no git hooks needed, just works (as long as the plugin is enabled).<br>
   ]]></description>
     <!--    Prevents making commits after six in the evening.-->
+
+    <change-notes><![CDATA[
+        <ul>
+            <li>
+                0.1-SNAPSHOT: initial release with warning message on commit, action in the tools menu and notification on startup
+            </li>
+        </ul>
+  ]]></change-notes>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
