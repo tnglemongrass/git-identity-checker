@@ -40,7 +40,8 @@ This plugin is available via the JetBrains Marketplace as [Git Identity Checker]
   lines containing "GitIdentityChecker".
 
 ## Release Process
-- Increase version in `build.gradle.kts`
-- Build a zip, appears in [build/distributions](build/distributions)
-- Upload manually via https://plugins.jetbrains.com/plugin/add#intellij
+- Increase version in [build.gradle.kts](build.gradle.kts)
+- edit changelog in [src/main/resources/META-INF/plugin.xml](src/main/resources/META-INF/plugin.xml)
+- Build a zip via `buildPlugin` target, appears in [build/distributions/](build/distributions/)
+- Upload manually via https://plugins.jetbrains.com/plugin/23050-git-identity-checker
 - Create a commit + version tag and push to GitHub
