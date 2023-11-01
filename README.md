@@ -1,5 +1,4 @@
-# Git Identity Checker
-
+# <img src="src/main/resources/META-INF/pluginIcon.svg" height="45px"/> Git Identity Checker
 
 This is an IntelliJ plugin to prevent making commits without local `user.name` and `user.mail`.
 
@@ -38,6 +37,10 @@ Motivation is to prevent commits under the wrong mail address when working on mu
   open and stop on breakpoints.
 - There is also a log available, menu 'Help', 'Show log in files' (old UI also allows to open log in IDE), look for
   lines containing "GitIdentityChecker".
+
+## Screenshots
+![](screenshots/screenshot5.png)
+![](screenshots/screenshot4.png)
 
 ## Release Process
 - Increase version in [build.gradle.kts](build.gradle.kts)
