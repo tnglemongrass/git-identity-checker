@@ -1,14 +1,15 @@
 # GitIdentityChecker
 
-This is an intellij plugin to prevent commits without local `user.name` and `user.mail`.
+This is an IntelliJ plugin to prevent commits without local `user.name` and `user.mail`.
 
 In runs as part of the standard 'commit' button action and shows an error message if this condition is not found.
 
 Motivation is to prevent commits under the wrong mail address when working on multiple repositories (work, github, private bitbucket,...).
 
-## Usage options
+## Features
+- Automatic check before each commit, shows yes/no warning dialog if no local name/mail are found.
 - Manual check via "Tools" menu and "Check Local Git Config...".
-- Automatic check before each commit, shows yes/no dialog if no local name/mail are found.
+- Check when opening a repository, shows a notification if no local name/mail are found.
 
 ## Development
 ### Requirements
