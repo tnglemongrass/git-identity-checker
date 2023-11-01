@@ -5,7 +5,6 @@ import com.intellij.notification.NotificationType
 import com.intellij.notification.Notifications
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
-import com.intellij.openapi.ui.Messages
 
 class ProjectOpenedListener : ProjectManagerListener {
     override fun projectOpened(project: Project) {

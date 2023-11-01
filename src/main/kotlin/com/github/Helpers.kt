@@ -1,27 +1,13 @@
 package com.github
 
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.ui.Messages
 import java.io.File
 
 class Helpers {
     companion object {
-        fun hasLocalGitUserAndMailWithMessageBox(project: Project): Boolean {
-            val (name: String?, email: String?) = retrieveLocalGitUserAndMail(project)
-            val conditionFulfilled = name != null && email != null
 
-            if (!isGitProject(project)) {
-                Messages.showMessageDialog(project, "No .git/config found.", "Local Git Identity Checker", Messages.getErrorIcon())
-                return false
-            }
-
-            if (conditionFulfilled) {
-                Messages.showMessageDialog(project, "Repo-specific git user.name and user.email found with values:\nuser.name = $name\nuser.mail = $email", "Local Git Identity Checker", Messages.getInformationIcon())
-                return true
-            } else {
-                Messages.showMessageDialog(project, "No repo-specific git user.name and/or user.email found in .git/config.", "Local Git Identity Checker", Messages.getWarningIcon())
-                return false
-            }
+        fun isGitProject(project: Project): Boolean {
+            return File(project.basePath, ".git/config").isFile
         }
 
         fun hasLocalGitUserAndMail(project: Project): Boolean {
@@ -29,11 +15,7 @@ class Helpers {
             return name != null && email != null
         }
 
-        fun isGitProject(project: Project): Boolean {
-            return File(project.basePath, ".git/config").isFile
-        }
-
-        private fun retrieveLocalGitUserAndMail(project: Project): Pair<String?, String?> {
+        fun retrieveLocalGitUserAndMail(project: Project): Pair<String?, String?> {
             val gitConfigFile = File(project.basePath, ".git/config")
             val configLines = gitConfigFile.readLines()
 
