@@ -44,7 +44,7 @@ Motivation is to prevent commits under the wrong mail address when working on mu
 
 ## Release Process
 - Increase version in [build.gradle.kts](build.gradle.kts)
-- edit changelog in [src/main/resources/META-INF/plugin.xml](src/main/resources/META-INF/plugin.xml)
-- Build a zip via `buildPlugin` target, appears in [build/distributions/](build/distributions/)
+- edit change-notes in [src/main/resources/META-INF/plugin.xml](src/main/resources/META-INF/plugin.xml)
+- Build a zip via `buildPlugin` target, appears in [build/distributions/](build/distributions)
 - Upload manually via https://plugins.jetbrains.com/plugin/23050-git-identity-checker
 - Create a commit + version tag and push to GitHub
