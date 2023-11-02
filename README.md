@@ -27,16 +27,17 @@ Motivation is to prevent commits under the wrong mail address when working on mu
 - IntellijIDEA 2023.2.4 or later
 - Written in Kotlin, Gradle, ...
 
-### Where is the code?
-- All the commit check logic is in `src/main/kotlin/com/github/CheckinHandlerFactory.kt`
-- The plugin components are registered in `src/main/resources/META-INF/plugin.xml`
-
-### Debugging
+### Running / Debugging
 
 - Open the project in Intellij, set breakpoints and click the debug icon. A new IntelliJ Community Edition window will
   open and stop on breakpoints.
 - There is also a log available, menu 'Help', 'Show log in files' (old UI also allows to open log in IDE), look for
   lines containing "GitIdentityChecker".
+
+### Where is the code?
+- All the commit check logic is in `src/main/kotlin/com/github/CheckinHandlerFactory.kt`
+- The plugin components are registered in `src/main/resources/META-INF/plugin.xml`
+
 
 ## Screenshots
 ![](screenshots/screenshot5.png)
