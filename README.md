@@ -27,7 +27,7 @@ Motivation is to prevent commits under the wrong mail address when working on mu
 - IntellijIDEA 2023.2.4 or later
 - Written in Kotlin, Gradle, ...
 
-### Running / Debugging
+### Running and Debugging
 
 - Open the project in Intellij, set breakpoints and click the debug icon. A new IntelliJ Community Edition window will
   open and stop on breakpoints.
