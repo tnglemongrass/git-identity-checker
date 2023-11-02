@@ -31,7 +31,7 @@ Motivation is to prevent commits under the wrong mail address when working on mu
 
 - Open the project in Intellij, set breakpoints and click the debug icon. A new IntelliJ Community Edition window will
   open and stop on breakpoints.
-- There is also a log available, menu 'Help', 'Show log in files' (old UI also allows to open log in IDE), look for
+- There is also a log available, menu 'Help', 'Show log in files', look for
   lines containing "GitIdentityChecker".
 
 ### Where is the code?
