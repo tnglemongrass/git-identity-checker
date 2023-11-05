@@ -4,6 +4,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.Messages
+import com.intellij.openapi.vfs.VirtualFile
 
 class OnMenuAction : AnAction() {
     override fun actionPerformed(event: AnActionEvent) {
@@ -17,46 +18,38 @@ class OnMenuAction : AnAction() {
             return
         }
 
-        val messagesGood = mutableListOf<String>()
-        val messagesBad = mutableListOf<String>()
+        val repoDescriptions = mutableListOf<String>()
+        var badCounter = 0
 
         for (root in Helpers.getAllGitRoots(project)) {
-            val (name: String?, email: String?) = Helpers.retrieveLocalGitUserAndMail(root)
-            val repoDetailsString = "\t${root.path}\n\tuser.name = $name\n\tuser.email = $email\n"
-            val hasNameAndMail = name != null && email != null
+            val (name, email) = Helpers.retrieveLocalGitUserAndMail(root)
+            val repoDetailsString = "${rootToConfigLink(root)}\nname = $name\nemail = $email\n"
+            repoDescriptions.add(repoDetailsString)
 
-            if (hasNameAndMail) {
-                messagesGood.add(repoDetailsString)
-            } else {
-                messagesBad.add(repoDetailsString)
-            }
+            val hasNameAndMail = name != null && email != null
+            if (!hasNameAndMail) badCounter++
         }
 
-        val showWarningIcon = messagesBad.isNotEmpty()
-        val icon = if (showWarningIcon) Messages.getWarningIcon() else Messages.getInformationIcon()
-        val message = buildMessageText(messagesGood, messagesBad)
+        val icon = if (badCounter > 0) Messages.getWarningIcon() else Messages.getInformationIcon()
+        val message = buildMessageText(repoDescriptions, badCounter)
         Messages.showMessageDialog(project, message, "Local Git Identity Checker", icon)
     }
 
-    private fun buildMessageText(messagesGood: MutableList<String>, messagesBad: MutableList<String>): String {
+    private fun rootToConfigLink(root: VirtualFile): String {
+        return "<a href='" + root.findFileByRelativePath(".git/config")?.path + "'>" + root.path + "</a>"
+    }
+
+    private fun buildMessageText(repoDescriptions: MutableList<String>, badCounter: Int): String {
         var message = ""
-        message = if (messagesBad.isNotEmpty()) {
-            message.plus("Found ${messagesBad.size} problem(s). See below for details.\n")
+        message = if (badCounter > 0) {
+            message.plus("Found $badCounter problem(s). Check the identities below.\n")
         } else {
             message.plus("No problems found. See below for details.\n")
         }
         message = message.plus("\n")
-        if (messagesBad.isNotEmpty()) {
-            message = message.plus("Found no repo-specific git user.name and/or user.email in:\n")
-            message = message.plus("\n")
-            message = if (messagesBad.isNotEmpty()) message.plus(messagesBad.joinToString("\n")) else message.plus("None\n")
-            message = message.plus("\n")
-            message = message.plus("Found repo-specific git user.name and user.email in:\n")
-            message = message.plus("\n")
-        }
-        message = if (messagesGood.isNotEmpty()) message.plus(messagesGood.joinToString("\n")) else message.plus("None\n")
+        message = if (repoDescriptions.isNotEmpty()) message.plus(repoDescriptions.joinToString("\n")) else message.plus("None\n")
         message = message.plus("\n")
-        message = message.plus("Please edit the respective .git/config if you want to make changes.")
+        message = message.plus("Please click the link to open the respective .git/config.")
         return message
     }
 }
