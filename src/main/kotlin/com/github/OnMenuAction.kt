@@ -8,10 +8,10 @@ import com.intellij.openapi.ui.Messages
 class OnMenuAction : AnAction() {
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project ?: return
-        hasLocalGitUserAndMailWithMessageBox(project)
+        showIdentitiesSummary(project)
     }
 
-    private fun hasLocalGitUserAndMailWithMessageBox(project: Project) {
+    private fun showIdentitiesSummary(project: Project) {
         if (!Helpers.hasGitRoots(project)) {
             Messages.showMessageDialog(project, "No git root found.", "Local Git Identity Checker", Messages.getErrorIcon())
             return
