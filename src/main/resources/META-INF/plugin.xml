@@ -46,7 +46,7 @@
     </extensions>
 
     <actions>
-        <action id="CheckGitConfigAction" class="com.github.CheckGitConfigAction" text="Check Local Git Identity..."
+        <action id="CheckGitConfigAction" class="com.github.CheckGitConfigAction" text="Check Local Git Identities..."
                 description="Check if local Git user.name and user.email are set">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>

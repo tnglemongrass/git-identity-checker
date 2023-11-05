@@ -17,18 +17,46 @@ class CheckGitConfigAction : AnAction() {
             return
         }
 
-        val root = Helpers.getAllGitRoots(project)[0]
-        val (name: String?, email: String?) = Helpers.retrieveLocalGitUserAndMail(root)
-        val hasNameAndMail = name != null && email != null
+        val messagesGood = mutableListOf<String>()
+        val messagesBad = mutableListOf<String>()
 
-        val icon = if (hasNameAndMail) Messages.getInformationIcon() else Messages.getWarningIcon()
-        val message = buildMessageText(name, email, hasNameAndMail)
+        for (root in Helpers.getAllGitRoots(project)) {
+            val (name: String?, email: String?) = Helpers.retrieveLocalGitUserAndMail(root)
+            val repoDetailsString = "\t${root.path}\n\tuser.name = $name\n\tuser.email = $email\n"
+            val hasNameAndMail = name != null && email != null
+
+            if (hasNameAndMail) {
+                messagesGood.add(repoDetailsString)
+            } else {
+                messagesBad.add(repoDetailsString)
+            }
+        }
+
+        val showWarningIcon = messagesBad.isNotEmpty()
+        val icon = if (showWarningIcon) Messages.getWarningIcon() else Messages.getInformationIcon()
+        val message = buildMessageText(messagesGood, messagesBad)
         Messages.showMessageDialog(project, message, "Local Git Identity Checker", icon)
     }
 
-    private fun buildMessageText(name: String?, email: String?, hasNameAndMail: Boolean): String {
-        val message1 = "Repo-specific git user.name and user.email found with values:\nuser.name = $name\nuser.email = $email"
-        val message2 = "No repo-specific git user.name and/or user.email found in .git/config."
-        return if (hasNameAndMail) message1 else message2
+    private fun buildMessageText(messagesGood: MutableList<String>, messagesBad: MutableList<String>): String {
+        var message = ""
+        message = if (messagesBad.isNotEmpty()) {
+            message.plus("Found ${messagesBad.size} problem(s). See below for details.\n")
+        } else {
+            message.plus("No problems found. See below for details.\n")
+        }
+        message = message.plus("\n")
+        if (messagesBad.isNotEmpty()) {
+            message = message.plus("Found no repo-specific git user.name and/or user.email in:\n")
+            message = message.plus("\n")
+            message = if (messagesBad.isNotEmpty()) message.plus(messagesBad.joinToString("\n")) else message.plus("None\n")
+            message = message.plus("\n")
+            message = message.plus("Found repo-specific git user.name and user.email in:\n")
+            message = message.plus("\n")
+        }
+        message = if (messagesGood.isNotEmpty()) message.plus(messagesGood.joinToString("\n")) else message.plus("None\n")
+        message = message.plus("\n")
+        message = message.plus("Please edit the respective .git/config if you want to make changes.")
+        return message
     }
 }
