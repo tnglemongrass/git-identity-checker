@@ -15,7 +15,8 @@
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Prevents making commits without local <code>git.user</code> and <code>git.email</code>.<br><br>
+    Prevents making commits without local <code>git.user</code> and <code>git.email</code>.<br>
+    Useful when working with multiple git repositories requiring different email addresses.<br>
         <ul>
             <li> Yes/no MsgBox when trying to commit </li>
             <li> Warning notification upon opening a repo </li>
@@ -26,7 +27,8 @@
 
     <change-notes><![CDATA[
         <ul>
-            <li> 0.4: reimplement logic to work for git repo!=project root </li>
+            <li> 0.5: <TODO> improve Tools dialog text </li>
+            <li> 0.4: reimplement logic to work with > 1 git repos in project </li>
             <li> 0.3.1: update text in dialogs </li>
             <li> 0.3: add an icon </li>
             <li> 0.2: first public release </li>
