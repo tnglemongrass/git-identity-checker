@@ -31,13 +31,16 @@ class CheckinHandlerFactory : CheckinHandlerFactory() {
                         // check if a local git config files exist, its path is ${repo root}/.git/config
                         val hasLocalUserAndMail: Boolean = Helpers.hasLocalGitUserAndMail(root)
                         if (!hasLocalUserAndMail) {
-                            LOG.info("GitIdentityChecker - No repo-specific git user.name and user.email found.")
+                            LOG.info("GitIdentityChecker - No repo-specific git user.name and user.email found in ${root.path}.")
                             rootsWithProblems.add(root)
                         }
                     }
 
                     if (rootsWithProblems.isNotEmpty()) {
-                        val dialogResult = Messages.showYesNoDialog("No repo-specific git user.name and user.email found. Are you REALLY sure to continue?", "Local Git Identity Checker", Messages.getErrorIcon())
+                        val dialogResult = Messages.showYesNoDialog(
+                                "No repo-specific git user.name and/or user.email found for\n" +
+                                        " ${rootsWithProblems.joinToString(separator = "\n") { root -> root.path }}\n" +
+                                        "Are you REALLY sure to continue?", "Local Git Identity Checker", Messages.getErrorIcon())
                         return if (dialogResult == Messages.YES) {
                             ReturnResult.COMMIT
                         } else {
