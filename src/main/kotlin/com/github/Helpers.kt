@@ -3,7 +3,6 @@ package com.github
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vcs.ProjectLevelVcsManager
 import com.intellij.openapi.vfs.VirtualFile
-import java.io.File
 
 class Helpers {
     companion object {
@@ -25,10 +24,6 @@ class Helpers {
                 return configFile.isValid
             }
             return false
-        }
-
-        fun isGitProject(project: Project): Boolean {
-            return File(project.basePath, ".git/config").isFile
         }
 
         fun hasLocalGitUserAndMail(rootDir: VirtualFile): Boolean {

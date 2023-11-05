@@ -8,11 +8,9 @@ import com.intellij.openapi.startup.StartupActivity
 
 class ProjectOpenedListener : StartupActivity.DumbAware {
     override fun runActivity(project: Project) {
-        val isGitRepo = Helpers.isGitProject(project)
-        if (isGitRepo) {
-            val root = Helpers.getAllGitRoots(project)[0]
+        for (root in Helpers.getAllGitRoots(project)) {
             if (!Helpers.hasLocalGitUserAndMail(root)) {
-                val content = "No repo-specific git user.name and user.email found."
+                val content = "No repo-specific git user.name and/or user.email found in ${root.path}."
                 val notification = Notification("GitIdentityChecker", "Local git identity checker", content, NotificationType.WARNING)
                 Notifications.Bus.notify(notification, project)
             }
