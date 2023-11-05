@@ -4,10 +4,10 @@ import com.intellij.notification.Notification
 import com.intellij.notification.NotificationType
 import com.intellij.notification.Notifications
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.project.ProjectManagerListener
+import com.intellij.openapi.startup.StartupActivity
 
-class ProjectOpenedListener : ProjectManagerListener {
-    override fun projectOpened(project: Project) {
+class ProjectOpenedListener : StartupActivity.DumbAware {
+    override fun runActivity(project: Project) {
         val isGitRepo = Helpers.isGitProject(project)
         if (isGitRepo) {
             if (!Helpers.hasLocalGitUserAndMail(project)) {

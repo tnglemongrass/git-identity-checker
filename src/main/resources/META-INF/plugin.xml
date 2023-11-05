@@ -41,6 +41,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <checkinHandlerFactory implementation="com.github.CheckinHandlerFactory"/>
         <notificationGroup id="GitIdentityChecker" displayType="STICKY_BALLOON"/>
+        <postStartupActivity implementation="com.github.ProjectOpenedListener"/>
     </extensions>
 
     <actions>
@@ -49,10 +50,5 @@
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>
     </actions>
-
-    <applicationListeners>
-        <listener class="com.github.ProjectOpenedListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
 
 </idea-plugin>
