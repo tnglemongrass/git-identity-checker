@@ -19,16 +19,16 @@ class CheckGitConfigAction : AnAction() {
 
         val root = Helpers.getAllGitRoots(project)[0]
         val (name: String?, email: String?) = Helpers.retrieveLocalGitUserAndMail(root)
-        val conditionFulfilled = name != null && email != null
+        val hasNameAndMail = name != null && email != null
 
+        val icon = if (hasNameAndMail) Messages.getInformationIcon() else Messages.getWarningIcon()
+        val message = buildMessageText(name, email, hasNameAndMail)
+        Messages.showMessageDialog(project, message, "Local Git Identity Checker", icon)
+    }
 
-
-        if (conditionFulfilled) {
-            Messages.showMessageDialog(project, "Repo-specific git user.name and user.email found with values:\nuser.name = $name\nuser.email = $email", "Local Git Identity Checker", Messages.getInformationIcon())
-            return
-        } else {
-            Messages.showMessageDialog(project, "No repo-specific git user.name and/or user.email found in .git/config.", "Local Git Identity Checker", Messages.getWarningIcon())
-            return
-        }
+    private fun buildMessageText(name: String?, email: String?, hasNameAndMail: Boolean): String {
+        val message1 = "Repo-specific git user.name and user.email found with values:\nuser.name = $name\nuser.email = $email"
+        val message2 = "No repo-specific git user.name and/or user.email found in .git/config."
+        return if (hasNameAndMail) message1 else message2
     }
 }
