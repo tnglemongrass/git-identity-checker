@@ -1,34 +1,52 @@
 package com.github
 
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.vcs.ProjectLevelVcsManager
+import com.intellij.openapi.vfs.VirtualFile
 import java.io.File
 
 class Helpers {
     companion object {
 
+        fun getAllGitRoots(project: Project): Array<VirtualFile> {
+            val vcsManager = ProjectLevelVcsManager.getInstance(project)
+            val allRoots = vcsManager.allVersionedRoots
+            return allRoots.filter { root: VirtualFile -> isGitRoot(root) }.toTypedArray()
+        }
+
+        private fun isGitRoot(rootDir: VirtualFile): Boolean {
+            val configFile = rootDir.findFileByRelativePath(".git/config")
+            if (configFile != null) {
+                return configFile.isValid
+            }
+            return false
+        }
+
         fun isGitProject(project: Project): Boolean {
             return File(project.basePath, ".git/config").isFile
         }
 
-        fun hasLocalGitUserAndMail(project: Project): Boolean {
-            val (name: String?, email: String?) = retrieveLocalGitUserAndMail(project)
+        fun hasLocalGitUserAndMail(rootDir: VirtualFile): Boolean {
+            val (name: String?, email: String?) = retrieveLocalGitUserAndMail(rootDir)
             return name != null && email != null
         }
 
-        fun retrieveLocalGitUserAndMail(project: Project): Pair<String?, String?> {
-            val gitConfigFile = File(project.basePath, ".git/config")
-            val configLines = gitConfigFile.readLines()
+        fun retrieveLocalGitUserAndMail(rootDir: VirtualFile): Pair<String?, String?> {
+            val gitConfigFile = rootDir.findFileByRelativePath(".git/config")
+            val configLines = gitConfigFile?.inputStream?.bufferedReader().use { it?.readLines() }
 
             var currentUserSection = false
             var name: String? = null
             var email: String? = null
 
-            for (line in configLines) {
-                when {
-                    line.trim() == "[user]" -> currentUserSection = true
-                    currentUserSection && line.trim().startsWith("name") -> name = line.substringAfter("=").trim()
-                    currentUserSection && line.trim().startsWith("email") -> email = line.substringAfter("=").trim()
-                    line.trim().startsWith("[") && line.trim() != "[user]" -> currentUserSection = false
+            if (configLines != null) {
+                for (line in configLines) {
+                    when {
+                        line.trim() == "[user]" -> currentUserSection = true
+                        currentUserSection && line.trim().startsWith("name") -> name = line.substringAfter("=").trim()
+                        currentUserSection && line.trim().startsWith("email") -> email = line.substringAfter("=").trim()
+                        line.trim().startsWith("[") && line.trim() != "[user]" -> currentUserSection = false
+                    }
                 }
             }
             return Pair(name, email)

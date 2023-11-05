@@ -12,7 +12,8 @@ class CheckGitConfigAction : AnAction() {
     }
 
     private fun hasLocalGitUserAndMailWithMessageBox(project: Project): Boolean {
-        val (name: String?, email: String?) = Helpers.retrieveLocalGitUserAndMail(project)
+        val root = Helpers.getAllGitRoots(project)[0]
+        val (name: String?, email: String?) = Helpers.retrieveLocalGitUserAndMail(root)
         val conditionFulfilled = name != null && email != null
 
         if (!Helpers.isGitProject(project)) {
