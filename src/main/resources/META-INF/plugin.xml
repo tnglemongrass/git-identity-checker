@@ -26,6 +26,7 @@
 
     <change-notes><![CDATA[
         <ul>
+            <li> 0.4: reimplement logic to work for git repo!=project root </li>
             <li> 0.3.1: update text in dialogs </li>
             <li> 0.3: add an icon </li>
             <li> 0.2: first public release </li>
