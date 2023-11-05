@@ -6,7 +6,7 @@ import com.intellij.notification.Notifications
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.StartupActivity
 
-class ProjectOpenedListener : StartupActivity.DumbAware {
+class OnStartup : StartupActivity.DumbAware {
     override fun runActivity(project: Project) {
         for (root in Helpers.getAllGitRoots(project)) {
             if (!Helpers.hasLocalGitUserAndMail(root)) {

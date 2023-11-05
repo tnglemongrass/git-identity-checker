@@ -41,13 +41,13 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <checkinHandlerFactory implementation="com.github.CheckinHandlerFactory"/>
+        <checkinHandlerFactory implementation="com.github.OnCommit"/>
         <notificationGroup id="GitIdentityChecker" displayType="STICKY_BALLOON"/>
-        <postStartupActivity implementation="com.github.ProjectOpenedListener"/>
+        <postStartupActivity implementation="com.github.OnStartup"/>
     </extensions>
 
     <actions>
-        <action id="CheckGitConfigAction" class="com.github.CheckGitConfigAction" text="Check Local Git Identities..."
+        <action id="CheckGitConfigAction" class="com.github.OnMenuAction" text="Check Local Git Identities..."
                 description="Check if local Git user.name and user.email are set">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>

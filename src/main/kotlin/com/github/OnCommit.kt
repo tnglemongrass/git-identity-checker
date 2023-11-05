@@ -9,7 +9,7 @@ import com.intellij.openapi.vcs.checkin.CheckinHandlerFactory
 import com.intellij.openapi.vfs.VirtualFile
 
 
-class CheckinHandlerFactory : CheckinHandlerFactory() {
+class OnCommit : CheckinHandlerFactory() {
     companion object {
         private val LOG: Logger = Logger.getInstance(CheckinHandlerFactory::class.java)
     }
