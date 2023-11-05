@@ -6,15 +6,13 @@ import com.intellij.openapi.vcs.CheckinProjectPanel
 import com.intellij.openapi.vcs.changes.CommitContext
 import com.intellij.openapi.vcs.checkin.CheckinHandler
 import com.intellij.openapi.vcs.checkin.CheckinHandlerFactory
-import org.jetbrains.annotations.NotNull
 
 class CheckinHandlerFactory : CheckinHandlerFactory() {
     companion object {
         private val LOG: Logger = Logger.getInstance(CheckinHandlerFactory::class.java)
     }
 
-    @NotNull
-    override fun createHandler(@NotNull checkinProjectPanel: CheckinProjectPanel, @NotNull commitContext: CommitContext): CheckinHandler {
+    override fun createHandler(checkinProjectPanel: CheckinProjectPanel, commitContext: CommitContext): CheckinHandler {
         return object : CheckinHandler() {
             override fun beforeCheckin(): ReturnResult {
                 val doGitIdentityCheck = true
