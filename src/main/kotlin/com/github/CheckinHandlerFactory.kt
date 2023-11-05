@@ -17,9 +17,8 @@ class CheckinHandlerFactory : CheckinHandlerFactory() {
     override fun createHandler(@NotNull checkinProjectPanel: CheckinProjectPanel, @NotNull commitContext: CommitContext): CheckinHandler {
         return object : CheckinHandler() {
             override fun beforeCheckin(): ReturnResult {
-                val isGitRepo = Helpers.isGitProject(checkinProjectPanel.project)
-
                 val doGitIdentityCheck = true
+                val isGitRepo = Helpers.hasGitRoots(checkinProjectPanel.project)
 
                 if (doGitIdentityCheck && isGitRepo) {
                     // check if a local git config files exist, its path is ${repo root}/.git/config

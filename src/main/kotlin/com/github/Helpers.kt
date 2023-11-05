@@ -14,6 +14,11 @@ class Helpers {
             return allRoots.filter { root: VirtualFile -> isGitRoot(root) }.toTypedArray()
         }
 
+        fun hasGitRoots(project: Project): Boolean {
+            for (root in getAllGitRoots(project)) if (isGitRoot(root)) return true
+            return false
+        }
+
         private fun isGitRoot(rootDir: VirtualFile): Boolean {
             val configFile = rootDir.findFileByRelativePath(".git/config")
             if (configFile != null) {

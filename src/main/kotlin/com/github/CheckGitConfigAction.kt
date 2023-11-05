@@ -11,22 +11,24 @@ class CheckGitConfigAction : AnAction() {
         hasLocalGitUserAndMailWithMessageBox(project)
     }
 
-    private fun hasLocalGitUserAndMailWithMessageBox(project: Project): Boolean {
+    private fun hasLocalGitUserAndMailWithMessageBox(project: Project) {
+        if (!Helpers.hasGitRoots(project)) {
+            Messages.showMessageDialog(project, "No git root found.", "Local Git Identity Checker", Messages.getErrorIcon())
+            return
+        }
+
         val root = Helpers.getAllGitRoots(project)[0]
         val (name: String?, email: String?) = Helpers.retrieveLocalGitUserAndMail(root)
         val conditionFulfilled = name != null && email != null
 
-        if (!Helpers.isGitProject(project)) {
-            Messages.showMessageDialog(project, "No .git/config found.", "Local Git Identity Checker", Messages.getErrorIcon())
-            return false
-        }
+
 
         if (conditionFulfilled) {
             Messages.showMessageDialog(project, "Repo-specific git user.name and user.email found with values:\nuser.name = $name\nuser.email = $email", "Local Git Identity Checker", Messages.getInformationIcon())
-            return true
+            return
         } else {
             Messages.showMessageDialog(project, "No repo-specific git user.name and/or user.email found in .git/config.", "Local Git Identity Checker", Messages.getWarningIcon())
-            return false
+            return
         }
     }
 }
