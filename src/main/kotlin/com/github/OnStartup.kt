@@ -18,7 +18,7 @@ class OnStartup : StartupActivity.DumbAware {
         for (root in Helpers.getAllGitRoots(project)) {
             if (!Helpers.hasLocalGitUserAndMail(root)) {
                 val content = "No repo-specific git user.name and/or user.email found in ${root.path}."
-                val notification = Notification("GitIdentityChecker", "Local git identity checker", content, NotificationType.WARNING)
+                val notification = Notification("GitIdentityChecker Notification", "Local git identity checker", content, NotificationType.WARNING)
                 Notifications.Bus.notify(notification, project)
                 LOG.warn("No repo-specific git user.name and/or user.email found in ${root.path}")
             }

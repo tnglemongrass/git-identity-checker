@@ -44,7 +44,7 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <checkinHandlerFactory implementation="com.github.OnCommit"/>
-        <notificationGroup id="GitIdentityChecker" displayType="STICKY_BALLOON"/>
+        <notificationGroup id="GitIdentityChecker Notification" displayType="STICKY_BALLOON"/>
         <postStartupActivity implementation="com.github.OnStartup"/>
     </extensions>
 
