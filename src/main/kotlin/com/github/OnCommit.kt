@@ -4,8 +4,10 @@ import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vcs.CheckinProjectPanel
 import com.intellij.openapi.vcs.changes.CommitContext
+import com.intellij.openapi.vcs.changes.ui.BooleanCommitOption
 import com.intellij.openapi.vcs.checkin.CheckinHandler
 import com.intellij.openapi.vcs.checkin.CheckinHandlerFactory
+import com.intellij.openapi.vcs.ui.RefreshableOnComponent
 import com.intellij.openapi.vfs.VirtualFile
 
 
@@ -17,16 +19,13 @@ class OnCommit : CheckinHandlerFactory() {
     override fun createHandler(checkinProjectPanel: CheckinProjectPanel, commitContext: CommitContext): CheckinHandler {
         return object : CheckinHandler() {
 
-            // Here, we are in an actual commit situation and have more specific information available (no need to check ALL existing git projects)
+            private var doGitIdentityCheck_: Boolean = true
 
             override fun beforeCheckin(): ReturnResult {
-                val doGitIdentityCheck = true
                 val isGitRepo = Helpers.hasGitRoots(checkinProjectPanel.project)
-
-                val rootsWithProblems = mutableListOf<VirtualFile>()
-
-                if (doGitIdentityCheck && isGitRepo) {
-                    // since we are in the 'commit' situation we have a more specific information about the affected repositories
+                if (doGitIdentityCheck() && isGitRepo) {
+                    val rootsWithProblems = mutableListOf<VirtualFile>()
+                    // in the 'commit' situation we have a more specific information available about affected repositories, (no need to check ALL existing git projects)
                     for (root in checkinProjectPanel.roots) {
                         // check if a local git config files exist, its path is ${repo root}/.git/config
                         val hasLocalUserAndMail: Boolean = Helpers.hasLocalGitUserAndMail(root)
@@ -51,6 +50,18 @@ class OnCommit : CheckinHandlerFactory() {
 
                 return ReturnResult.COMMIT
 
+            }
+
+            override fun getBeforeCheckinConfigurationPanel(): RefreshableOnComponent {
+                return BooleanCommitOption(checkinProjectPanel, "Check Local Git Identity", false, this::doGitIdentityCheck, this::setDoGitIdentityCheck)
+            }
+
+            private fun doGitIdentityCheck(): Boolean {
+                return doGitIdentityCheck_
+            }
+
+            private fun setDoGitIdentityCheck(b: Boolean) {
+                doGitIdentityCheck_ = b
             }
         }
     }
