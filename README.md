@@ -37,15 +37,16 @@ as [Git Identity Checker](https://plugins.jetbrains.com/plugin/23050-git-identit
 
 ### Running and Debugging
 
-- Open the project in Intellij, set breakpoints and click the debug icon. A new IntelliJ Community Edition window will
+- Open the project in IntelliJ, set breakpoints and click the debug icon. A new IntelliJ Community Edition window will
   open and stop on breakpoints.
 - There is also a log available, menu 'Help', 'Show log in files', look for
   lines containing "GitIdentityChecker".
 
 ### Where is the code?
 
-- All the commit check logic is in `src/main/kotlin/com/github/CheckinHandlerFactory.kt`
+- All the commit check logic is in `src/main/kotlin/com/github/OnCommit.kt`
 - The plugin components are registered in `src/main/resources/META-INF/plugin.xml`
+- The two other ways to check are in `OnStartup.kt` and `OnMenuAction.kt`
 
 ## Screenshots
 

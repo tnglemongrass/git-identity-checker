@@ -27,6 +27,7 @@
 
     <change-notes><![CDATA[
         <ul>
+            <li> 0.5.0: add "Before Commit" checkbox </li>
             <li> 0.4.1: improve Tools dialog with clickable links, more logging on startup </li>
             <li> 0.4: reimplement logic to work with > 1 git repos in project </li>
             <li> 0.3.1: update text in dialogs </li>
