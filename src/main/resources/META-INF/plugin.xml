@@ -20,6 +20,7 @@
         <ul>
             <li> Yes/no MsgBox when trying to commit </li>
             <li> Warning notification upon opening a repo </li>
+            <li> Manual check via Tools | Check Local Git Identities... </li>
             <li> No configuration, no git hooks, just works (as long as the plugin is enabled) </li>
         <ul>
     <br>
@@ -27,8 +28,9 @@
 
     <change-notes><![CDATA[
         <ul>
-            <li> 0.5.0: add "Before Commit" checkbox </li>
-            <li> 0.4.1: improve Tools dialog with clickable links, more logging on startup </li>
+            <li> 0.5.1: Compatibility with newer IDEs </li>
+            <li> 0.5.0: add as checkbox to "Before Commit" </li>
+            <li> 0.4.1: edit git identities directly from Tools dialog, more logging on startup </li>
             <li> 0.4: reimplement logic to work with > 1 git repos in project </li>
             <li> 0.3.1: update text in dialogs </li>
             <li> 0.3: add an icon </li>

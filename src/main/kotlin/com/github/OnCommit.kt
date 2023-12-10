@@ -25,7 +25,8 @@ class OnCommit : CheckinHandlerFactory() {
                 val isGitRepo = Helpers.hasGitRoots(checkinProjectPanel.project)
                 if (doGitIdentityCheck() && isGitRepo) {
                     val rootsWithProblems = mutableListOf<VirtualFile>()
-                    // in the 'commit' situation we have a more specific information available about affected repositories, (no need to check ALL existing git projects)
+
+                    // Here, we are in an actual commit situation and have more specific information available (no need to check ALL existing git projects)
                     for (root in checkinProjectPanel.roots) {
                         // check if a local git config files exist, its path is ${repo root}/.git/config
                         val hasLocalUserAndMail: Boolean = Helpers.hasLocalGitUserAndMail(root)
