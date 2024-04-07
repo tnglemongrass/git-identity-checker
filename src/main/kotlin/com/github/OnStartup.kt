@@ -7,7 +7,7 @@ import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.StartupActivity
 
-class OnStartup : StartupActivity.DumbAware {
+class OnStartup : StartupActivity {
     companion object {
         private val LOG: Logger = Logger.getInstance(OnStartup::class.java)
     }
