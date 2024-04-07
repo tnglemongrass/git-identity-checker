@@ -22,14 +22,14 @@ class OnCommit : CheckinHandlerFactory() {
             private var doGitIdentityCheck_: Boolean = true
 
             override fun beforeCheckin(): ReturnResult {
-                val isGitRepo = Helpers.hasGitRoots(checkinProjectPanel.project)
+                val isGitRepo = GitHelpers.hasGitRoots(checkinProjectPanel.project)
                 if (doGitIdentityCheck() && isGitRepo) {
                     val rootsWithProblems = mutableListOf<VirtualFile>()
 
                     // Here, we are in an actual commit situation and have more specific information available (no need to check ALL existing git projects)
                     for (root in checkinProjectPanel.roots) {
                         // check if a local git config files exist, its path is ${repo root}/.git/config
-                        val hasLocalUserAndMail: Boolean = Helpers.hasLocalGitUserAndMail(root)
+                        val hasLocalUserAndMail: Boolean = GitHelpers.hasLocalGitUserAndMail(root)
                         if (!hasLocalUserAndMail) {
                             LOG.info("GitIdentityChecker - No repo-specific git user.name and user.email found in ${root.path}.")
                             rootsWithProblems.add(root)

@@ -4,7 +4,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.vcs.ProjectLevelVcsManager
 import com.intellij.openapi.vfs.VirtualFile
 
-class Helpers {
+class GitHelpers {
     companion object {
 
         fun getAllGitRoots(project: Project): Array<VirtualFile> {

@@ -13,7 +13,7 @@ class OnMenuAction : AnAction() {
     }
 
     private fun showIdentitiesSummary(project: Project) {
-        if (!Helpers.hasGitRoots(project)) {
+        if (!GitHelpers.hasGitRoots(project)) {
             Messages.showMessageDialog(project, "No git root found.", "Local Git Identity Checker", Messages.getErrorIcon())
             return
         }
@@ -21,8 +21,8 @@ class OnMenuAction : AnAction() {
         val repoDescriptions = mutableListOf<String>()
         var badCounter = 0
 
-        for (root in Helpers.getAllGitRoots(project)) {
-            val (name, email) = Helpers.retrieveLocalGitUserAndMail(root)
+        for (root in GitHelpers.getAllGitRoots(project)) {
+            val (name, email) = GitHelpers.retrieveLocalGitUserAndMail(root)
             val repoDetailsString = "${rootToConfigLink(root)}\nname = $name\nemail = $email\n"
             repoDescriptions.add(repoDetailsString)
 
