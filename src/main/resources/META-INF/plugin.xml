@@ -28,6 +28,7 @@
 
     <change-notes><![CDATA[
         <ul>
+            <li> 0.5.4: fix: startup notification not always executing </li>
             <li> 0.5.1 - 0.5.3: Compatibility with newer IDE versions </li>
             <li> 0.5.0: add as checkbox to "Before Commit" </li>
             <li> 0.4.1: edit git identities directly from Tools dialog, more logging on startup </li>
