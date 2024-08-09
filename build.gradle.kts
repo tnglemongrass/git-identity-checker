@@ -1,7 +1,7 @@
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.0"
-    id("org.jetbrains.intellij") version "1.15.0"
+    id("org.jetbrains.intellij.platform") version "2.0.1"
 }
 
 group = "com.github"
@@ -9,16 +9,32 @@ version = "0.5.5"
 
 repositories {
     mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
+}
+
+dependencies {
+    intellijPlatform {
+        // Target IDE Platform
+        val type = "IC"
+        val version = "2024.2"
+        // "LATEST-EAP-SNAPSHOT"
+        create(type, version)
+
+        instrumentationTools()
+    }
 }
 
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
-intellij {
-    version.set("2024.1")
-//    version.set("LATEST-EAP-SNAPSHOT")
-    type.set("IC") // Target IDE Platform
-
-    plugins.set(listOf(/* Plugin Dependencies */))
+intellijPlatform {
+    pluginConfiguration {
+        ideaVersion {
+            sinceBuild = "222"
+            untilBuild = "242.*"
+        }
+    }
 }
 
 tasks {
@@ -29,20 +45,5 @@ tasks {
     }
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions.jvmTarget = "17"
-    }
-
-    patchPluginXml {
-        sinceBuild.set("222")
-        untilBuild.set("242.*")
-    }
-
-    signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
-    }
-
-    publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
     }
 }
