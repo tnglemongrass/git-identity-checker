@@ -37,9 +37,9 @@ as [Git Identity Checker](https://plugins.jetbrains.com/plugin/23050-git-identit
 
 ### Running and Debugging
 
-- Open the project in IntelliJ, set breakpoints and click the debug icon. A new IntelliJ Community Edition window will
-  open and stop on breakpoints.
-- There is also a log available, menu 'Help', 'Show log in files', look for
+- Open the project in IntelliJ, set breakpoints and click the debug icon next to "Run Plugin".
+  This will start the `runIde` gradle task, open a new IntelliJ Community Edition window and stop on breakpoints.
+- There is also a log available in the child IDE, menu 'Help', 'Open Log in Editor', look for
   lines containing "GitIdentityChecker".
 
 ### Where is the code?

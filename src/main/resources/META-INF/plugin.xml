@@ -28,6 +28,7 @@
 
     <change-notes><![CDATA[
         <ul>
+            <li> 0.5.5: fix: use non-sticky notifications </li>
             <li> 0.5.4: fix: startup notification not always executing </li>
             <li> 0.5.1 - 0.5.3: Compatibility with newer IDE versions </li>
             <li> 0.5.0: add as checkbox to "Before Commit" </li>
@@ -48,7 +49,7 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <checkinHandlerFactory implementation="com.github.OnCommit"/>
-        <notificationGroup id="GitIdentityChecker Notification" displayType="STICKY_BALLOON"/>
+        <notificationGroup id="GitIdentityChecker Notification" displayType="BALLOON"/>
         <postStartupActivity implementation="com.github.OnStartup"/>
     </extensions>
 
