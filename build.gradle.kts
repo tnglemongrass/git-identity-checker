@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.github"
-version = "0.5.5"
+version = "0.5.6"
 
 repositories {
     mavenCentral()
@@ -31,8 +31,8 @@ dependencies {
 intellijPlatform {
     pluginConfiguration {
         ideaVersion {
-            sinceBuild = "222"
-            untilBuild = "242.*"
+            sinceBuild = "241"
+            untilBuild = "243.*"
         }
     }
 }
