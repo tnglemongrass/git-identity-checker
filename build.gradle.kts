@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.github"
-version = "0.5.6"
+version = "0.5.7"
 
 repositories {
     mavenCentral()
@@ -18,7 +18,7 @@ dependencies {
     intellijPlatform {
         // Target IDE Platform
         val type = "IC"
-        val version = "2024.2"
+        val version = "2024.1"
         // "LATEST-EAP-SNAPSHOT"
         create(type, version)
 
@@ -32,7 +32,7 @@ intellijPlatform {
     pluginConfiguration {
         ideaVersion {
             sinceBuild = "241"
-            untilBuild = "243.*"
+            untilBuild = "252.*"
         }
     }
 }

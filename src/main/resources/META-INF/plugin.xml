@@ -28,7 +28,7 @@
 
     <change-notes><![CDATA[
         <ul>
-            <li> 0.5.6: Compatibility with newer IDE versions </li>
+            <li> 0.5.6 - 0.5.7: Compatibility with newer IDE versions </li>
             <li> 0.5.5: fix: use non-sticky notifications </li>
             <li> 0.5.4: fix: startup notification not always executing </li>
             <li> 0.5.1 - 0.5.3: Compatibility with newer IDE versions </li>
